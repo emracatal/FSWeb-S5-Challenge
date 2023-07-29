@@ -17,7 +17,19 @@ const Card = (makale) => {
   //   </div>
   // </div>
   //
-}
+  const cardDiv = document.querySelector("div");
+  cardDiv.setAttribute("class", "card");
+  cardDiv.innerHTML = `<div class="card">
+     <div class="headline">$${anabaslik}</div>
+     <div class="author">
+       <div class="img-container">
+         <img src=${yazarFoto}>
+       </div>
+       <span>${yazarAdı} tarafından</span>
+     </div>
+   </div>`;
+  return cardDiv;
+};
 
 const cardEkleyici = (secici) => {
   // GÖREV 6
@@ -28,6 +40,6 @@ const cardEkleyici = (secici) => {
   // Card bileşenini kullanarak yanıttaki her makale nesnesinden bir kart oluşturun.
   // Her cardı, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
   //
-}
+};
 
-export { Card, cardEkleyici }
+export { Card, cardEkleyici };

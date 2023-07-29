@@ -1,3 +1,5 @@
+import axios from "axios";
+
 const Tablar = (konu) => {
   // GÖREV 3
   // ---------------------
@@ -13,16 +15,35 @@ const Tablar = (konu) => {
   //   <div class="tab">teknoloji</div>
   // </div>
   //
-}
+
+  const topicsDiv = document.createElement("div");
+  topicsDiv.setAttribute("class", "topics");
+  topicsDiv.innerHTML = `<div class="topics">
+      <div class="tab">${javascript}</div>
+      <div class="tab">${bootstrap}</div>
+      <div class="tab">${teknoloji}</div>
+    </div>`;
+
+  return topicsDiv;
+};
 
 const tabEkleyici = (secici) => {
-  // GÖREV 4
-  // ---------------------
-  // Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
-  // Konuları bu uç noktadan almalıdır: `http://localhost:5001/api/konular` (console.log ile test edin!).
-  // Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
-  // Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
-  //
-}
+  axios
+    .get("http://localhost:5001/api/konular")
+    .then(function (response) {
+      const tabOgeleri = document.querySelector(secici);
+      return tabOgeleri.apendChild(Tablar(response.data.konular));
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+};
+// GÖREV 4
+// ---------------------
+// Tek argümanı olarak bir css seçici alan bu işlevi uygulayın.
+// Konuları bu uç noktadan almalıdır: `http://localhost:5001/api/konular` (console.log ile test edin!).
+// Yanıtın içindeki konu dizisini bulun ve Tablar bileşenini kullanarak tabları oluşturun.
+// Tabları, fonksiyona iletilen seçiciyle eşleşen DOM'daki öğeye ekleyin.
+//
 
-export { Tablar, tabEkleyici }
+export { Tablar, tabEkleyici };
