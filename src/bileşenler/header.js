@@ -12,7 +12,7 @@ const Header = (baslik, tarih, yazi) => {
   //  </div>
   //
   const headerDiv = document.createElement("div");
-  headerDiv.setAttribute("class", "header");
+  headerDiv.classList.add("header");
   headerDiv.innerHTML = `<div class="header">
   <span class="date">${tarih}</span>
   <h1>${baslik}</h1>
